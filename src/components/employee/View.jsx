@@ -27,7 +27,7 @@ function View() {
   }, [])
   return (
     <>{employee ? (
-     <div className="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md">
+     <div className="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md justify-center text-center items-center">
         <h2 className="text-2xl font-bold mb-8 text-center">
           Employee Details
         </h2>
@@ -38,7 +38,7 @@ function View() {
               className="rounded-full border w-72"
             />
           </div> */}
-          <div className='justify-center items-center text-center'>
+          <div className='justify-center items-center text-center grid grid-cols-1'>
             <div className="flex space-x-3 mb-5">
               <p className="text-lg font-bold">Name:</p>
               <p className="font-medium">{employee.userId.name}</p>
