@@ -41,29 +41,29 @@ function View() {
           <div className='grid grid-cols-1 gap-6 w-full'>
 
             <div className="flex flex-col md:flex-row justify-center items-center md:space-x-4 mb-4">
-              <p className="text-lg font-semibold text-gray-700 w-40 text-right">Name:</p>
+              <p className="text-lg font-semibold text-gray-700 w-40 text-start">Name:</p>
               <p className="text-lg text-gray-900">{employee.userId.name}</p>
             </div>
             <div className="flex flex-col md:flex-row justify-center items-center md:space-x-4 mb-4">
-              <p className="text-lg font-semibold text-gray-700 w-40 text-right">Employee ID:</p>
+              <p className="text-lg font-semibold text-gray-700 w-40 text-start">Employee ID:</p>
               <p className="text-lg text-gray-900">{employee.employeeId}</p>
             </div>
             <div className="flex flex-col md:flex-row justify-center items-center md:space-x-4 mb-4">
-              <p className="text-lg font-semibold text-gray-700 w-40 text-right">Date of Birth:</p>
+              <p className="text-lg font-semibold text-gray-700 w-40 text-start">Date of Birth:</p>
               <p className="text-lg text-gray-900">
                 {new Date(employee.dob).toLocaleDateString()}
               </p>
             </div>
             <div className="flex flex-col md:flex-row justify-center items-center md:space-x-4 mb-4">
-              <p className="text-lg font-semibold text-gray-700 w-40 text-right">Gender:</p>
+              <p className="text-lg font-semibold text-gray-700 w-40 text-start">Gender:</p>
               <p className="text-lg text-gray-900">{employee.gender}</p>
             </div>
             <div className="flex flex-col md:flex-row justify-center items-center md:space-x-4 mb-4">
-              <p className="text-lg font-semibold text-gray-700 w-40 text-right">Department:</p>
+              <p className="text-lg font-semibold text-gray-700 w-40 text-start">Department:</p>
               <p className="text-lg text-gray-900">{employee.department.dep_name}</p>
             </div>
             <div className="flex flex-col md:flex-row justify-center items-center md:space-x-4 mb-4">
-              <p className="text-lg font-semibold text-gray-700 w-40 text-right">Marital Status:</p>
+              <p className="text-lg font-semibold text-gray-700 w-40 text-start">Marital Status:</p>
               <p className="text-lg text-gray-900">{employee.maritalStatus}</p>
             </div>
           </div>
