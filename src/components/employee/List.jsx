@@ -28,7 +28,7 @@ function List() {
               dep_name: emp.department.dep_name,
               name:emp.userId.name,
               dob: new Date(emp.dob).toLocaleDateString(),
-              profileImage:<img width={50} className='rounded-full object-cover' src={`https://employee-api-jet.vercel.app/${emp.userId.profileImage}`} /> ,
+              // profileImage:<img width={50} className='rounded-full object-cover' src={`https://employee-api-jet.vercel.app/${emp.userId.profileImage}`} /> ,
               action: (<EmployeeButtons DepId={emp._id} />),
             }))
           setEmployees(data);

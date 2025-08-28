@@ -14,11 +14,11 @@ export const columns = [
         sortable:true,
         width: "130px"
     },
-     {
-        name: "Image",
-        selector: (row) => row.profileImage,
-        width: "90px"
-    },
+    //  {
+    //     name: "Image",
+    //     selector: (row) => row.profileImage,
+    //     width: "90px"
+    // },
      {
         name: "Department",
         selector: (row) => row.dep_name,
