@@ -1,7 +1,7 @@
-import axios from "axios";
+// import axios from "axios";
 
-const api = axios.create({
-  baseURL: "https://employee-api-eight-lemon.vercel.app/api",
-});
+// const api = axios.create({
+//   baseURL: "https://employee-api-jet.vercel.app/api",
+// });
 
-export default api;
+// export default api;
