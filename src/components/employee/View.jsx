@@ -31,7 +31,7 @@ function View() {
         <h2 className="text-2xl font-bold mb-8 text-center">
           Employee Details
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6"> */}
           {/* <div>
             <img
               src={`https://employee-api-jet.vercel.app/${employee.userId.profileImage}`}
@@ -67,7 +67,7 @@ function View() {
             </div>
           </div>
         </div>
-      </div>
+      // </div>
       ): <div>Loading ...</div>}</>
   )
 }
