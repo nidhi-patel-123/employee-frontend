@@ -121,7 +121,7 @@ function Add() {
                     </div>
                     {/* role */}
                     <div>
-                        <label className='block text-sm font-medium text-gray-700'>Role</label>
+                        <label className='block text-sm font-medium text-gray-700 w-full'>Role</label>
                         <select name="role" onChange={handleChange} className='mt-1 p-2 block w-full border border-gray-300 rounded-md' required>
                             <option value="">Select Role</option>
                             <option value="admin">Admin</option>
