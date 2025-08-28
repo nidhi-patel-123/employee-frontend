@@ -6,7 +6,7 @@ import AdminSidebar from '../components/dashboard/AdminSidebar'
 import Navbar from '../components/dashboard/Navbar'
 import AdminSummary from '../components/dashboard/AdminSummary'
 import { Outlet } from 'react-router-dom'
-import Notifications from '../components/dashboard/admin/Notifications'
+// import Notifications from '../components/dashboard/admin/Notifications'
 
 
 function AdminDashboard() {
