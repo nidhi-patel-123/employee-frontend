@@ -43,7 +43,7 @@ export const fetchDepartments = async () => {
   let departments
   try {
     const response = await axios.get(
-      "https://employee-api-eight-lemon.vercel.app/api/department", {
+      "https://employee-api-jet.vercel.app/api/department", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
@@ -64,7 +64,7 @@ export const getEmployees = async (id) => {
   let employees;
   try {
     const response = await axios.get(
-      `https://employee-api-eight-lemon.vercel.app/api/employee/department/${id}`, {
+      `https://employee-api-jet.vercel.app/api/employee/department/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
