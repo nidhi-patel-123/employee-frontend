@@ -38,7 +38,7 @@ function View() {
               className="rounded-full border w-72"
             />
           </div> */}
-          <div>
+          <div className='justify-center items-center text-center'>
             <div className="flex space-x-3 mb-5">
               <p className="text-lg font-bold">Name:</p>
               <p className="font-medium">{employee.userId.name}</p>
