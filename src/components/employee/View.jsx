@@ -27,47 +27,48 @@ function View() {
   }, [])
   return (
     <>{employee ? (
-     <div className="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md justify-center text-center items-center">
-        <h2 className="text-2xl font-bold mb-8 text-center">
+     <div className="max-w-3xl mx-auto mt-10 bg-white p-10 rounded-lg shadow-lg flex flex-col items-center text-center">
+        <h2 className="text-3xl font-bold mb-10 text-gray-800">
           Employee Details
         </h2>
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6"> */}
+        {/* <div className="grid grid-cols-1 gap-6 w-full"> */}
           {/* <div>
             <img
               src={`https://employee-api-jet.vercel.app/${employee.userId.profileImage}`}
               className="rounded-full border w-72"
             />
           </div> */}
-          <div className='justify-center items-center text-center grid grid-cols-1'>
-            <div className="flex space-x-3 mb-5">
-              <p className="text-lg font-bold">Name:</p>
-              <p className="font-medium">{employee.userId.name}</p>
+          <div className='grid grid-cols-1 gap-6 w-full'>
+
+            <div className="flex flex-col md:flex-row justify-center items-center md:space-x-4 mb-4">
+              <p className="text-lg font-semibold text-gray-700 w-40 text-right">Name:</p>
+              <p className="text-lg text-gray-900">{employee.userId.name}</p>
             </div>
-            <div className="flex space-x-3 mb-5">
-              <p className="text-lg font-bold">Employee ID:</p>
-              <p className="font-medium">{employee.employeeId}</p>
+            <div className="flex flex-col md:flex-row justify-center items-center md:space-x-4 mb-4">
+              <p className="text-lg font-semibold text-gray-700 w-40 text-right">Employee ID:</p>
+              <p className="text-lg text-gray-900">{employee.employeeId}</p>
             </div>
-            <div className="flex space-x-3 mb-5">
-              <p className="text-lg font-bold">Date of Birth:</p>
-              <p className="font-medium">
+            <div className="flex flex-col md:flex-row justify-center items-center md:space-x-4 mb-4">
+              <p className="text-lg font-semibold text-gray-700 w-40 text-right">Date of Birth:</p>
+              <p className="text-lg text-gray-900">
                 {new Date(employee.dob).toLocaleDateString()}
               </p>
             </div>
-            <div className="flex space-x-3 mb-5">
-              <p className="text-lg font-bold">Gender:</p>
-              <p className="font-medium">{employee.gender}</p>
+            <div className="flex flex-col md:flex-row justify-center items-center md:space-x-4 mb-4">
+              <p className="text-lg font-semibold text-gray-700 w-40 text-right">Gender:</p>
+              <p className="text-lg text-gray-900">{employee.gender}</p>
             </div>
-            <div className="flex space-x-3 mb-5">
-              <p className="text-lg font-bold">Department:</p>
-              <p className="font-medium">{employee.department.dep_name}</p>
+            <div className="flex flex-col md:flex-row justify-center items-center md:space-x-4 mb-4">
+              <p className="text-lg font-semibold text-gray-700 w-40 text-right">Department:</p>
+              <p className="text-lg text-gray-900">{employee.department.dep_name}</p>
             </div>
-            <div className="flex space-x-3 mb-5">
-              <p className="text-lg font-bold">Marital Status:</p>
-              <p className="font-medium">{employee.maritalStatus}</p>
+            <div className="flex flex-col md:flex-row justify-center items-center md:space-x-4 mb-4">
+              <p className="text-lg font-semibold text-gray-700 w-40 text-right">Marital Status:</p>
+              <p className="text-lg text-gray-900">{employee.maritalStatus}</p>
             </div>
           </div>
         </div>
-      // </div>
+      //  </div>
       ): <div>Loading ...</div>}</>
   )
 }
