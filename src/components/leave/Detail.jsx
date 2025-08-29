@@ -49,13 +49,13 @@ function Detail() {
                 <h2 className="text-2xl font-bold mb-8 text-center">
                     Leave Details
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* <div>
                         <img
                             src={`https://employee-api-jet.vercel.app/${leave.employeeId.userId.profileImage}`}
                             className="rounded-full border w-72"
                         />
-                    </div>
+                    </div> */}
                     <div>
                         <div className="flex space-x-3 mb-5">
                             <p className="text-lg font-bold">Name:</p>
