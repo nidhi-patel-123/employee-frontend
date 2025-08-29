@@ -120,7 +120,14 @@ function Add() {
                         <input type="password" name='password' placeholder='*****' onChange={handleChange} className='mt-1 p-2 block w-full border border-gray-300 rounded-md' required />
                     </div>
                     {/* role */}
-                    <div className='w-full'>
+                   
+                    {/* image upload */}
+                    {/* <div>
+                        <label className='block text-sm font-medium text-gray-700'>Upload Image</label>
+                        <input type="file" name='image' onChange={handleChange} placeholder='Upload Image' accept='image/*' className='mt-1 p-2 block w-full border border-gray-300 rounded-md' />
+                    </div> */}
+                </div>
+                 <div className='w-full'>
                         <label className='block text-sm font-medium text-gray-700 w-full'>Role</label>
                         <select name="role" onChange={handleChange} className='mt-1 p-2 block w-full border border-gray-300 rounded-md' required>
                             <option value="">Select Role</option>
@@ -128,12 +135,6 @@ function Add() {
                             <option value="employee">Employee</option>
                         </select>
                     </div>
-                    {/* image upload */}
-                    {/* <div>
-                        <label className='block text-sm font-medium text-gray-700'>Upload Image</label>
-                        <input type="file" name='image' onChange={handleChange} placeholder='Upload Image' accept='image/*' className='mt-1 p-2 block w-full border border-gray-300 rounded-md' />
-                    </div> */}
-                </div>
                 <button type='submit' className='w-full mt-6 bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-md'>
                     Add Employee
                 </button>
