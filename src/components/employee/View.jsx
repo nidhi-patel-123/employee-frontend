@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 function View() {
-  const { id } = useParams()
-  const [employee, setEmployee] = useState(null)
+    const {id} = useParams()
+    const [employee,setEmployee] = useState(null)
 
-  useEffect(() => {
+    useEffect(() => {
     const fetchEmployee = async () => {
       try {
         const response = await axios.get(`https://employee-api-jet.vercel.app/api/employee/${id}`, {
@@ -15,7 +15,7 @@ function View() {
           }
         });
         if (response.data.success) {
-          setEmployee(response.data.employee)
+         setEmployee(response.data.employee)
         }
       } catch (error) {
         if (error.response && !error.response.data.success) {
@@ -27,50 +27,49 @@ function View() {
   }, [])
   return (
     <>{employee ? (
-      <div className="max-w-5xl mx-auto mt-10 bg-white p-8 rounded-lg shadow-lg">
-         <h2 className="text-3xl font-bold mb-8 text-gray-800 text-center">
-
+     <div className="max-w-3xl mx-auto mt-10 bg-white p-10 rounded-lg shadow-lg flex flex-col items-center text-center">
+        <h2 className="text-3xl font-bold mb-10 text-gray-800">
           Employee Details
         </h2>
         {/* <div className="grid grid-cols-1 gap-6 w-full"> */}
-        {/* <div>
+          {/* <div>
             <img
               src={`https://employee-api-jet.vercel.app/${employee.userId.profileImage}`}
               className="rounded-full border w-72"
             />
           </div> */}
-       <div className="flex flex-wrap justify-center gap-x-10 gap-y-4 text-lg">
+          <div className='grid grid-cols-1 gap-6 w-full'>
 
-           <div className="flex space-x-2">
-            <p className="font-semibold text-gray-700">Name:</p>
-            <p className="text-lg text-gray-900">{employee.userId.name}</p>
-          </div>
-         <div className="flex space-x-2">
-            <p className="font-semibold text-gray-700">Employee ID:</p>
-            <p className="text-lg text-gray-900">{employee.employeeId}</p>
-          </div>
-          <div className="flex space-x-2">
-            <p className="font-semibold text-gray-700">Date of Birth:</p>
-            <p className="text-lg text-gray-900">
-              {new Date(employee.dob).toLocaleDateString()}
-            </p>
-          </div>
-          <div className="flex space-x-2">
-            <p className="font-semibold text-gray-700">Gender:</p>
-            <p className="text-lg text-gray-900">{employee.gender}</p>
-          </div>
-          <div className="flex space-x-2">
-            <p className="font-semibold text-gray-700">Department:</p>
-            <p className="text-lg text-gray-900">{employee.department.dep_name}</p>
-          </div>
-          <div className="flex space-x-2">
-            <p className="font-semibold text-gray-700">Marital Status:</p>
-            <p className="text-lg text-gray-900">{employee.maritalStatus}</p>
+            <div className="flex flex-col md:flex-row justify-center items-center md:space-x-4 mb-4">
+              <p className="text-lg font-semibold text-gray-700 w-40 text-center">Name:</p>
+              <p className="text-lg text-gray-900">{employee.userId.name}</p>
+            </div>
+            <div className="flex flex-col md:flex-row justify-center items-center md:space-x-4 mb-4">
+              <p className="text-lg font-semibold text-gray-700 w-40 text-center">Employee ID:</p>
+              <p className="text-lg text-gray-900">{employee.employeeId}</p>
+            </div>
+            <div className="flex flex-col md:flex-row justify-center items-center md:space-x-4 mb-4">
+              <p className="text-lg font-semibold text-gray-700 w-40 text-center">Date of Birth:</p>
+              <p className="text-lg text-gray-900">
+                {new Date(employee.dob).toLocaleDateString()}
+              </p>
+            </div>
+            <div className="flex flex-col md:flex-row justify-center items-center md:space-x-4 mb-4">
+              <p className="text-lg font-semibold text-gray-700 w-40 text-center">Gender:</p>
+              <p className="text-lg text-gray-900">{employee.gender}</p>
+            </div>
+            <div className="flex flex-col md:flex-row justify-center items-center md:space-x-4 mb-4">
+              <p className="text-lg font-semibold text-gray-700 w-40 text-center">Department:</p>
+              <p className="text-lg text-gray-900">{employee.department.dep_name}</p>
+            </div>
+            <div className="flex flex-col md:flex-row justify-center items-center md:space-x-4 mb-4">
+              <p className="text-lg font-semibold text-gray-700 w-40 text-center">Marital Status:</p>
+              <p className="text-lg text-gray-900">{employee.maritalStatus}</p>
+            </div>
           </div>
         </div>
-      </div>
       //  </div>
-    ) : <div>Loading ...</div>}</>
+      ): <div>Loading ...</div>}</>
   )
 }
 
