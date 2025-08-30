@@ -4,19 +4,55 @@ import axios from "axios";
 
 function Notifications() {
   const [notifications, setNotifications] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  // ✅ Fixed API URL (Only production)
+  const API_URL = "https://employee-api-jet.vercel.app/api";
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/notifications").then((res) => {
-      setNotifications(res.data);
-    });
+    const fetchNotifications = async () => {
+      try {
+        const res = await axios.get(`${API_URL}/notifications`);
+        setNotifications(res.data);
+      } catch (err) {
+        console.error("Error fetching notifications:", err);
+        setError("Failed to load notifications");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNotifications();
   }, []);
 
   const markAsRead = async (id) => {
-    await axios.put(`http://localhost:5000/api/notifications/${id}/read`);
-    setNotifications((prev) =>
-      prev.map((n) => (n._id === id ? { ...n, status: "read" } : n))
-    );
+    try {
+      await axios.put(`${API_URL}/notifications/${id}/read`);
+      setNotifications((prev) =>
+        prev.map((n) => (n._id === id ? { ...n, status: "read" } : n))
+      );
+    } catch (err) {
+      console.error("Error marking notification as read:", err);
+      alert("Failed to update notification");
+    }
   };
+
+  if (loading) {
+    return (
+      <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
+        <p>Loading notifications...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
+        <p className="text-red-500">{error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
@@ -28,7 +64,7 @@ function Notifications() {
           {notifications.map((n) => (
             <li
               key={n._id}
-              className={`p-3 border-b flex justify-between ${
+              className={`p-3 border-b flex justify-between items-start ${
                 n.status === "unread" ? "bg-gray-100" : ""
               }`}
             >
@@ -41,7 +77,7 @@ function Notifications() {
               </div>
               {n.status === "unread" && (
                 <button
-                  className="text-blue-500 text-sm"
+                  className="text-blue-500 text-sm hover:underline"
                   onClick={() => markAsRead(n._id)}
                 >
                   Mark as read

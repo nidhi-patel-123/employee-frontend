@@ -22,125 +22,46 @@
 
 
 // --------------------------------------------------------------------
-import React, { useEffect, useState } from "react";
-import { Bell } from "lucide-react";
 import { io } from "socket.io-client";
-import axios from "axios";
-import { useAuth } from "../../context/authContext";
+import { useEffect, useState } from "react";
 
-const BACKEND_URL = "https://employee-api-jet.vercel.app";
-const socket = io(BACKEND_URL, { withCredentials: true });
+const socket = io("https://employee-api-jet.vercel.app", {
+  transports: ["websocket", "polling"], // fallback enabled
+  withCredentials: true
+});
 
-function Navbar() {
-  const { user, logout } = useAuth();
+export default function Navbar() {
   const [notifications, setNotifications] = useState([]);
-  const [open, setOpen] = useState(false);
 
-  // Fetch notifications + Socket events
   useEffect(() => {
-    axios
-      .get(`${BACKEND_URL}/api/notifications`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        withCredentials: true,
-      })
-      .then((res) => setNotifications(res.data))
-      .catch((err) => console.error("Error fetching notifications:", err));
+    socket.on("connect", () => {
+      console.log("✅ Connected to server:", socket.id);
+    });
 
-    socket.on("newLeaveRequest", (notification) => {
-      setNotifications((prev) => [notification, ...prev]);
+    socket.on("newNotification", (data) => {
+      setNotifications(prev => [data, ...prev]);
+    });
+
+    socket.on("disconnect", () => {
+      console.log("❌ Disconnected from server");
     });
 
     return () => {
-      socket.off("newLeaveRequest");
+      socket.off("newNotification");
     };
   }, []);
 
-  const unreadCount = notifications.filter((n) => n.status === "unread").length;
-
-  // Mark single notification as read
-  const markAsRead = async (id) => {
-    try {
-      await axios.put(
-        `${BACKEND_URL}/api/notifications/${id}/read`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-          withCredentials: true,
-        }
-      );
-      setNotifications((prev) =>
-        prev.map((n) => (n._id === id ? { ...n, status: "read" } : n))
-      );
-    } catch (err) {
-      console.error("Error marking notification as read:", err);
-    }
-  };
-
   return (
-    <div className="flex justify-between items-center p-4 bg-[#395886] text-white shadow-md">
-      {/* Left: Welcome */}
-      <p className="font-semibold text-sm sm:text-base">
-        WELCOME {user?.name || "USER"}
-      </p>
-
-      {/* Right: Notifications + Logout */}
-      <div className="flex items-center space-x-4 relative">
-        {/* Bell */}
-        <div className="relative">
-          <Bell
-            className="w-6 h-6 text-white cursor-pointer"
-            onClick={() => setOpen(!open)}
-          />
-          {unreadCount > 0 && (
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1 rounded-full">
-              {unreadCount}
-            </span>
-          )}
-
-          {/* Dropdown */}
-          {open && (
-            <div className="absolute right-0 mt-2 w-72 bg-white text-black shadow-lg rounded-lg max-h-80 overflow-y-auto z-50">
-              {notifications.length === 0 ? (
-                <p className="p-2 text-gray-500 text-sm">No notifications</p>
-              ) : (
-                notifications.map((n) => (
-                  <div
-                    key={n._id}
-                    className={`p-2 border-b transition-colors ${
-                      n.status === "unread" ? "bg-gray-100" : ""
-                    }`}
-                  >
-                    <p className="font-semibold">{n.title}</p>
-                    <p className="text-sm">{n.message}</p>
-                    <p className="text-xs text-gray-400">
-                      {new Date(n.createdAt).toLocaleString()}
-                    </p>
-                    {n.status === "unread" && (
-                      <button
-                        onClick={() => markAsRead(n._id)}
-                        className="text-xs text-blue-500 mt-1"
-                      >
-                        Mark as read
-                      </button>
-                    )}
-                  </div>
-                ))
-              )}
-            </div>
-          )}
-        </div>
-
-        {/* Logout */}
-        <button
-          onClick={logout}
-          className="px-4 py-1 bg-[#131e2e] hover:bg-[#5c6b82af] rounded text-sm sm:text-base transition-colors duration-200"
-        >
-          Logout
-        </button>
-      </div>
+    <div>
+      <button onClick={() => socket.emit("sendNotification", "Hello Admin!")}>
+        🔔 Send Test Notification
+      </button>
+      <ul>
+        {notifications.map((n, i) => (
+          <li key={i}>{n}</li>
+        ))}
+      </ul>
     </div>
   );
 }
-
-export default Navbar;
 
