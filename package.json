@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.11.0",
     "i": "^0.3.7",
+    "lucide-react": "^0.542.0",
     "npm": "^11.5.2",
     "react": "^19.1.1",
     "react-data-table-component": "^7.7.0",

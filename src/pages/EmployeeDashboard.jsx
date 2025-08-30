@@ -1,4 +1,3 @@
-// -------------------------------------------------------------------------------------------------------------------------------
 import React from 'react'
 import Sidebar from '../components/EmployeeDashboard/Sidebar'
 import {Outlet} from 'react-router-dom'
@@ -18,5 +17,4 @@ function EmployeeDashboard() {
 
 export default EmployeeDashboard
 
-// ----------------------------------------------------------------------------------------------------------------
 
