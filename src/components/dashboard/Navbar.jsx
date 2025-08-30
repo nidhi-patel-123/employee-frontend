@@ -36,31 +36,43 @@ function Navbar() {
   const [notifications, setNotifications] = useState([]);
   const [open, setOpen] = useState(false);
 
+  // Fetch notifications + Socket events
   useEffect(() => {
-    // Fetch notifications
     axios
-      .get(`${BACKEND_URL}/api/notifications`, { withCredentials: true })
+      .get(`${BACKEND_URL}/api/notifications`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        withCredentials: true,
+      })
       .then((res) => setNotifications(res.data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.error("Error fetching notifications:", err));
 
-    // Listen for new notifications
     socket.on("newLeaveRequest", (notification) => {
       setNotifications((prev) => [notification, ...prev]);
     });
 
-    return () => socket.off("newLeaveRequest");
+    return () => {
+      socket.off("newLeaveRequest");
+    };
   }, []);
 
   const unreadCount = notifications.filter((n) => n.status === "unread").length;
 
+  // Mark single notification as read
   const markAsRead = async (id) => {
     try {
-      await axios.put(`${BACKEND_URL}/api/notifications/${id}/read`, {}, { withCredentials: true });
+      await axios.put(
+        `${BACKEND_URL}/api/notifications/${id}/read`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          withCredentials: true,
+        }
+      );
       setNotifications((prev) =>
         prev.map((n) => (n._id === id ? { ...n, status: "read" } : n))
       );
     } catch (err) {
-      console.log(err);
+      console.error("Error marking notification as read:", err);
     }
   };
 
@@ -131,3 +143,4 @@ function Navbar() {
 }
 
 export default Navbar;
+
